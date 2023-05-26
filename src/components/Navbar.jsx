@@ -2,9 +2,9 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <div class="note-app__header">
+    <div className="note-app__header">
       <h1>Catata Catat</h1>
-      <div class="note-search">
+      <div className="note-search">
         <input type="text" placeholder="Cari catata ..." value=""/>
       </div>
     </div>
