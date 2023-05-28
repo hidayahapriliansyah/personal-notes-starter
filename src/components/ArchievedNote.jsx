@@ -8,11 +8,15 @@ function ArchievedNote({ notes, onDeleteNote, onChangeArchiveStatus }) {
   return (
     <>
       <h2>Arsip</h2>
-      {
-        notes.length !== 0
-          ? <NoteList notes={notes} onDeleteNote={onDeleteNote} onChangeArchiveStatus={onChangeArchiveStatus}/>
-          : <NoteListEmptyMessage />
-      }
+      {notes.length !== 0 ? (
+        <NoteList
+          notes={notes}
+          onDeleteNote={onDeleteNote}
+          onChangeArchiveStatus={onChangeArchiveStatus}
+        />
+      ) : (
+        <NoteListEmptyMessage />
+      )}
     </>
   );
 }

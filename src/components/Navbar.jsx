@@ -14,12 +14,12 @@ function Navbar({ onInputSearch }) {
   };
 
   return (
-    <div className="note-app__header">
+    <div className='note-app__header'>
       <h1>Catata Catat</h1>
-      <div className="note-search">
+      <div className='note-search'>
         <input
-          type="text"
-          placeholder="Cari catata ..."
+          type='text'
+          placeholder='Cari catata ...'
           value={input}
           onChange={handleChange}
         />

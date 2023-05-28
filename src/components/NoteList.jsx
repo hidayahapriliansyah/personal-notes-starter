@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 function NoteList({ notes, onDeleteNote, onChangeArchiveStatus }) {
   return (
     <>
-      <div className="notes-list">
+      <div className='notes-list'>
         {notes.map((note, index) => {
           const { id, title, body, createdAt, archived } = note;
           return (

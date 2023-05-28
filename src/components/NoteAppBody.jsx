@@ -15,7 +15,7 @@ function NoteAppBody({
   const archivedNote = notes.filter((note) => note.archived === true);
 
   return (
-    <div className="note-app__body">
+    <div className='note-app__body'>
       <InputNote onAddNote={onAddNote} />
       <ActiveNote
         notes={activeNote}
