@@ -2,7 +2,7 @@ import React from 'react';
 import NoteList from './NoteList';
 import NoteListEmptyMessage from './NoteListEmptyMessage';
 
-function ActiveNote({ notes, onDeleteNote, onChangeArchiveStatus }) {
+function ActiveNotes({ notes, onDeleteNote, onChangeArchiveStatus }) {
   return (
     <>
       <h2>Catata Aktif</h2>
@@ -19,4 +19,4 @@ function ActiveNote({ notes, onDeleteNote, onChangeArchiveStatus }) {
   );
 }
 
-export default ActiveNote;
+export default ActiveNotes;

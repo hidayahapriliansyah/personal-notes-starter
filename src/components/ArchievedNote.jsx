@@ -4,7 +4,7 @@ import React from 'react';
 import NoteList from './NoteList';
 import NoteListEmptyMessage from './NoteListEmptyMessage';
 
-function ArchievedNote({ notes, onDeleteNote, onChangeArchiveStatus }) {
+function ArchievedNotes({ notes, onDeleteNote, onChangeArchiveStatus }) {
   return (
     <>
       <h2>Arsip</h2>
@@ -21,4 +21,4 @@ function ArchievedNote({ notes, onDeleteNote, onChangeArchiveStatus }) {
   );
 }
 
-export default ArchievedNote;
+export default ArchievedNotes;

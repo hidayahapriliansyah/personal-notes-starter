@@ -1,9 +1,9 @@
 import React from 'react';
 
 // components
-import ActiveNote from './ActiveNote';
+import ActiveNotes from './ActiveNotes';
 import InputNote from './InputNote';
-import ArchievedNote from './ArchievedNote';
+import ArchievedNotes from './ArchievedNote';
 
 function NoteAppBody({
   notes,
@@ -17,12 +17,12 @@ function NoteAppBody({
   return (
     <div className='note-app__body'>
       <InputNote onAddNote={onAddNote} />
-      <ActiveNote
+      <ActiveNotes
         notes={activeNote}
         onDeleteNote={onDeleteNote}
         onChangeArchiveStatus={onChangeArchiveStatus}
       />
-      <ArchievedNote
+      <ArchievedNotes
         notes={archivedNote}
         onDeleteNote={onDeleteNote}
         onChangeArchiveStatus={onChangeArchiveStatus}
