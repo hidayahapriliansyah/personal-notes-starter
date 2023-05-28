@@ -13,7 +13,11 @@ class NotesApp extends Component {
     super();
     this.state = {
       notes: getInitialData(),
+      showedNotes: [],
+      searchInput: '',
     };
+
+    this.state.showedNotes = this.state.notes;
 
     this.onInputSearch = this.onInputSearch.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
@@ -21,13 +25,23 @@ class NotesApp extends Component {
     this.onChangeArchiveStatus = this.onChangeArchiveStatus.bind(this);
   }
 
-  onInputSearch(title) {
-    const filteredNotes = this.state.notes.filter((note) =>
+  filterNotesByTitle(notes, title) {
+    return notes.filter((note) =>
       note.title.toLowerCase().includes(title.toLowerCase())
     );
+  }
+
+  onInputSearch(title) {
+    const setShowedNotes =
+      title === ''
+        ? this.state.notes
+        : this.filterNotesByTitle(this.state.notes, title);
+
     this.setState(() => {
       return {
-        notes: title === '' ? getInitialData() : filteredNotes,
+        ...this.state,
+        searchInput: title,
+        showedNotes: setShowedNotes,
       };
     });
   }
@@ -41,9 +55,17 @@ class NotesApp extends Component {
       archived: false,
     };
 
+    const newNotes = [...this.state.notes, newNote];
+
+    const setShowedNotes = this.filterNotesByTitle(
+      newNotes,
+      this.state.searchInput
+    );
+
     this.setState(() => {
       return {
-        notes: [...this.state.notes, newNote],
+        notes: newNotes,
+        showedNotes: setShowedNotes,
       };
     });
 
@@ -63,23 +85,40 @@ class NotesApp extends Component {
     );
 
     if (decideToDelete) {
+      const newNotes = this.state.notes.filter(
+        (note) => targetedNote.id !== note.id
+      );
+      const setShowedNotes = this.filterNotesByTitle(
+        newNotes,
+        this.state.searchInput
+      );
+
       this.setState(() => {
         return {
-          notes: this.state.notes.filter((note) => targetedNote.id !== note.id),
+          notes: newNotes,
+          showedNotes: setShowedNotes,
         };
       });
     }
   }
 
   onChangeArchiveStatus(id) {
+    const newNotes = this.state.notes.map((note) => {
+      if (note.id === id) {
+        return { ...note, archived: !note.archived };
+      }
+      return note;
+    });
+
+    const setShowedNotes = this.filterNotesByTitle(
+      newNotes,
+      this.state.searchInput
+    ); 
+
     this.setState(() => {
       return {
-        notes: this.state.notes.map((note) => {
-          if (note.id === id) {
-            return { ...note, archived: !note.archived };
-          }
-          return note;
-        }),
+        notes: newNotes,
+        showedNotes: setShowedNotes, 
       };
     });
   }
@@ -89,7 +128,7 @@ class NotesApp extends Component {
       <>
         <Navbar onInputSearch={this.onInputSearch} />
         <NoteAppBody
-          notes={this.state.notes}
+          notes={this.state.showedNotes}
           onAddNote={this.onAddNote}
           onDeleteNote={this.onDeleteNote}
           onChangeArchiveStatus={this.onChangeArchiveStatus}
