@@ -52,9 +52,16 @@ class NotesApp extends Component {
 
   onDeleteNote(id) {
     const targetedNote = this.state.notes.find((note) => note.id === id);
+
+    if (!targetedNote) {
+      alert(`Tidak ada catatan dengan id : ${id}`);
+      return;
+    }
+
     const decideToDelete = window.confirm(
       `Yakin ingin menghapus catatan ${targetedNote.title}?`
     );
+
     if (decideToDelete) {
       this.setState(() => {
         return {

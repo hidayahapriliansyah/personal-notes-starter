@@ -26,7 +26,7 @@ function NoteItem({ id, title, body, createdAt, archived, onDeleteNote, onChange
                 <span className="material-symbols-outlined unarchived">
                   unarchive
                 </span>
-                Aktifkan
+                Pindahkan
               </>
             ) : (
               <>

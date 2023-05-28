@@ -49,6 +49,23 @@ textarea::placeholder {
   flex: 1;
 }
 
+.note-search {
+  position: relative;
+}
+
+.note-search_clear {
+  margin-left: -25px;
+  margin-right: 10px;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.note-search_clear:hover {
+  color: #777777;
+}
+
 .note-app__body {
   max-width: 1000px;
   margin: 80px auto;
@@ -83,6 +100,14 @@ textarea::placeholder {
   color: #aaa;
 }
 
+.note-input__title__char-limit.warning {
+  color: #ffb732;
+}
+
+.note-input__title__char-limit.danger {
+  color: #ff2222;
+}
+
 .note-input__body {
   min-height: 175px;
   border-radius: 10px;
@@ -101,7 +126,7 @@ textarea::placeholder {
 
 .note-input button:hover {
   color: white;
-  background-color: #2021244d;
+  background-color: #202124;
 }
 
 .note-input button:active {
@@ -165,8 +190,14 @@ textarea::placeholder {
   border: 0;
   border-top: 1px solid #aaa;
   padding: 8px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: bold;
   cursor: pointer;
+}
+
+.note-item__delete-button:hover,
+.note-item__archive-button:hover {
+  background-color: black;
 }
 
 .note-item__delete-button span,
@@ -176,18 +207,30 @@ textarea::placeholder {
 
 .note-item__delete-button {
   border-right: 1px solid #aaa;
-  color: #ff5f52;
+  /* color: #ff4432; */
+  color: #202124;
 }
 
 .note-item__archive-button {
-  color: #2ad300;
+  color: #202124;
+  /* color: #007fd3; */
 }
 
 .note-item__archive-button:hover {
-  color: #187700;
+  /* color: #004b7c; */
+  color: white;
 }
 
 .note-item__delete-button:hover {
+  /* color: #b00020; */
+  color: white;
+}
+
+.note-item__archive-button:active {
+  color: #004b7c;
+}
+
+.note-item__delete-button:active {
   color: #b00020;
 }
 

@@ -8,6 +8,11 @@ function Navbar({ onInputSearch }) {
     onInputSearch(e.target.value);
   };
 
+  const handleClick = (e) => {
+    setInput('');
+    onInputSearch('');
+  };
+
   return (
     <div className="note-app__header">
       <h1>Catata Catat</h1>
@@ -18,6 +23,7 @@ function Navbar({ onInputSearch }) {
           value={input}
           onChange={handleChange}
         />
+        <button className='note-search_clear' title='Hapus cari' onClick={handleClick}>✖</button>
       </div>
     </div>
   );
