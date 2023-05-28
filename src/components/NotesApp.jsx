@@ -13,15 +13,30 @@ class NotesApp extends Component {
     super();
     this.state = {
       notes: getInitialData(),
-    }
+    };
+
+    this.onInputSearch = this.onInputSearch.bind(this);
+  }
+
+  onInputSearch(title) {
+    const filteredNotes = this.state.notes.filter((note) =>
+      note.title.toLowerCase().includes(title.toLowerCase())
+    );
+    this.setState(() => {
+        return {
+          notes: title === '' ? getInitialData() : filteredNotes,
+        };
+    });
   }
 
   render() {
-    return <>
-      <Navbar />
-      <NoteAppBody notes={this.state.notes}/>
-      <NoteAppFooter />
-    </>;
+    return (
+      <>
+        <Navbar onInputSearch={this.onInputSearch} />
+        <NoteAppBody notes={this.state.notes} />
+        <NoteAppFooter />
+      </>
+    );
   }
 }
 
