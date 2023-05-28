@@ -25,17 +25,19 @@ class NotesApp extends Component {
     this.onChangeArchiveStatus = this.onChangeArchiveStatus.bind(this);
   }
 
-  filterNotesByTitle(notes, title) {
+  filterNotes(notes, title) {
     return notes.filter((note) =>
       note.title.toLowerCase().includes(title.toLowerCase())
     );
   }
 
   onInputSearch(title) {
-    const setShowedNotes =
+    const filteredNotes = this.filterNotes(this.state.notes, title);
+
+    const setShowedNotes = 
       title === ''
         ? this.state.notes
-        : this.filterNotesByTitle(this.state.notes, title);
+        : filteredNotes;
 
     this.setState(() => {
       return {
@@ -56,14 +58,11 @@ class NotesApp extends Component {
     };
 
     const newNotes = [...this.state.notes, newNote];
-
-    const setShowedNotes = this.filterNotesByTitle(
-      newNotes,
-      this.state.searchInput
-    );
+    const setShowedNotes = this.filterNotes(newNotes, this.state.searchInput);
 
     this.setState(() => {
       return {
+        ...this.state,
         notes: newNotes,
         showedNotes: setShowedNotes,
       };
@@ -85,16 +84,12 @@ class NotesApp extends Component {
     );
 
     if (decideToDelete) {
-      const newNotes = this.state.notes.filter(
-        (note) => targetedNote.id !== note.id
-      );
-      const setShowedNotes = this.filterNotesByTitle(
-        newNotes,
-        this.state.searchInput
-      );
+      const newNotes = this.state.notes.filter((note) => targetedNote.id !== note.id);
+      const setShowedNotes = this.filterNotes(newNotes, this.state.searchInput);
 
       this.setState(() => {
         return {
+          ...this.state,
           notes: newNotes,
           showedNotes: setShowedNotes,
         };
@@ -109,16 +104,13 @@ class NotesApp extends Component {
       }
       return note;
     });
-
-    const setShowedNotes = this.filterNotesByTitle(
-      newNotes,
-      this.state.searchInput
-    ); 
+    const setShowedNotes = this.filterNotes(newNotes, this.state.searchInput);
 
     this.setState(() => {
       return {
+        ...this.state,
         notes: newNotes,
-        showedNotes: setShowedNotes, 
+        showedNotes: setShowedNotes,
       };
     });
   }
