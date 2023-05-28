@@ -32,12 +32,7 @@ class NotesApp extends Component {
   }
 
   onInputSearch(title) {
-    const filteredNotes = this.filterNotes(this.state.notes, title);
-
-    const setShowedNotes = 
-      title === ''
-        ? this.state.notes
-        : filteredNotes;
+    const setShowedNotes = this.filterNotes(this.state.notes, title);
 
     this.setState(() => {
       return {
@@ -84,7 +79,9 @@ class NotesApp extends Component {
     );
 
     if (decideToDelete) {
-      const newNotes = this.state.notes.filter((note) => targetedNote.id !== note.id);
+      const newNotes = this.state.notes.filter(
+        (note) => targetedNote.id !== note.id
+      );
       const setShowedNotes = this.filterNotes(newNotes, this.state.searchInput);
 
       this.setState(() => {
