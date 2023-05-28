@@ -17,6 +17,7 @@ class NotesApp extends Component {
 
     this.onInputSearch = this.onInputSearch.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
+    this.onDeleteNote = this.onDeleteNote.bind(this);
   }
 
   onInputSearch(title) {
@@ -51,11 +52,23 @@ class NotesApp extends Component {
     window.alert(`Note ${title} berhasil ditambahkan!`);
   }
 
+  onDeleteNote(id) {
+    const targetedNote = this.state.notes.find((note) => note.id === id);
+    const decideToDelete = window.confirm(`Yakin ingin menghapus catatan ${targetedNote.title}?`);
+    if (decideToDelete) {
+      this.setState(() => {
+        return {
+          notes: this.state.notes.filter((note) => targetedNote.id !== note.id)
+        }
+      });
+    }
+  }
+
   render() {
     return (
       <>
         <Navbar onInputSearch={this.onInputSearch} />
-        <NoteAppBody notes={this.state.notes} onAddNote={this.onAddNote}/>
+        <NoteAppBody notes={this.state.notes} onAddNote={this.onAddNote} onDeleteNote={this.onDeleteNote}/>
         <NoteAppFooter />
       </>
     );

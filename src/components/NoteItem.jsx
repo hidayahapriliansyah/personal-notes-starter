@@ -3,7 +3,7 @@ import React from 'react';
 // import function
 import { showFormattedDate } from '../utils';
 
-function NoteItem({ title, body, createdAt, archived }) {
+function NoteItem({ id, title, body, createdAt, archived, onDeleteNote }) {
   return (
     <>
       <div className="note-item">
@@ -13,7 +13,7 @@ function NoteItem({ title, body, createdAt, archived }) {
           <p className="note-item__body">{ body }</p>
         </div>
         <div className="note-item__action">
-          <button className="note-item__delete-button">
+          <button className="note-item__delete-button" onClick={() => onDeleteNote(id)}>
             <span className="material-symbols-outlined">delete</span>
             Delete
           </button>
