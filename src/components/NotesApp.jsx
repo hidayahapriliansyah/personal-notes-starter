@@ -16,6 +16,7 @@ class NotesApp extends Component {
     };
 
     this.onInputSearch = this.onInputSearch.bind(this);
+    this.onAddNote = this.onAddNote.bind(this);
   }
 
   onInputSearch(title) {
@@ -29,11 +30,32 @@ class NotesApp extends Component {
     });
   }
 
+  onAddNote({ title, body}) {
+    const newNote = {
+      id: +new Date(),
+      title,
+      body,
+      createdAt: new Date().toISOString(),
+      archived: false,
+    };
+
+    this.setState(() => {
+      return {
+        notes: [
+          ...this.state.notes,
+          newNote,
+        ],
+      };
+    });
+
+    window.alert(`Note ${title} berhasil ditambahkan!`);
+  }
+
   render() {
     return (
       <>
         <Navbar onInputSearch={this.onInputSearch} />
-        <NoteAppBody notes={this.state.notes} />
+        <NoteAppBody notes={this.state.notes} onAddNote={this.onAddNote}/>
         <NoteAppFooter />
       </>
     );
